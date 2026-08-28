@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -10,7 +10,10 @@ export default function WelcomeScreen() {
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.footerText}>Lab 3: Flexbox Layout</Text>
+        <Button
+          title="View My Tasks"
+          onPress={() => navigation.navigate('AddTask')}
+        />
       </View>
     </View>
   );
@@ -44,9 +47,5 @@ const styles = StyleSheet.create({
   footer: {
     paddingBottom: 40,
     alignItems: 'center',
-  },
-  footerText: {
-    color: '#9FB0D0',
-    fontSize: 12,
   },
 });
