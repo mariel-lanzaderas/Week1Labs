@@ -11,7 +11,7 @@ export default function WelcomeScreen({ navigation }) {
 
       <View style={styles.footer}>
         <Button
-          title="View My Tasks"
+          title="Go to My Tasks"
           onPress={() => navigation.navigate('AddTask')}
         />
       </View>

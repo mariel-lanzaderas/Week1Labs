@@ -26,6 +26,14 @@ export default function AddTaskScreen() {
     setTaskText('');
   }
 
+  function handleToggleTask(id) {
+  setTasks(
+    tasks.map((t) =>
+      t.id === id ? { ...t, done: !t.done } : t
+    )
+  );
+}
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Add a Task</Text>
@@ -45,10 +53,22 @@ export default function AddTaskScreen() {
         data={tasks}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TaskCard title={item.title} done={item.done} />
+          <TaskCard
+            title={item.title}
+            done={item.done}
+            onToggle={() => handleToggleTask(item.id)}
+          />
         )}
-        style={styles.list}
+        
+        ListEmptyComponent={
+          <Text style={styles.emptyText}>
+            No tasks yet — add one above!
+          </Text>
+        }
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+      style={styles.list}
       />
+      
     </View>
   );
 }
@@ -75,4 +95,12 @@ const styles = StyleSheet.create({
   list: {
     marginTop: 16,
   },
+  empty: {
+    textAlign: 'center',
+    color: '#6B7280',
+    marginTop: 24
+  },
+  separator: {
+    height: 8
+  }
 });
